@@ -12,11 +12,13 @@ public class BulletPool : MonoBehaviour
     [SerializeField] private Transform bullet;
     [SerializeField] private int bulletCount = 15;
     [SerializeField] private Transform bulletHolding;
-    private void Awake(){
+    private void Awake()
+    {
         instance = this;
         InstantiateObjects(bulletCount);
     }
-    private void FindBulletHolding(){
+    private void FindBulletHolding()
+    {
         bulletHolding = transform.Find("Bullet Holding");
         Debug.Log(bulletHolding.gameObject.name);
     }
@@ -34,21 +36,22 @@ public class BulletPool : MonoBehaviour
     public Transform GetInstantiateObjects()
     {
         Transform getBullet;
-        if(bulletPool.Count!=0){
+        if (bulletPool.Count != 0)
+        {
             getBullet = bulletPool[0];
-            Debug.Log(getBullet.gameObject.name);
             bulletPool.RemoveAt(0);
             return getBullet;
         }
-        else {
-            getBullet =Instantiate(bullet);
+        else
+        {
+            getBullet = Instantiate(bullet);
+            getBullet.parent = bulletHolding;
             bulletPool.Add(getBullet);
             return getBullet;
         }
-
-
     }
-    public void SetBulletBackToPool(Transform bullet){
+    public void SetBulletBackToPool(Transform bullet)
+    {
         bulletPool.Add(bullet);
         bullet.gameObject.SetActive(false);
     }
