@@ -1188,8 +1188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPoint: 5
   maxHealthPoint: 5
-  movingSpeed: 1
-  damage: 1
+  movingSpeed: 5
+  damage: 2
   playerPos: {fileID: 1778341267}
   enemyMovementController: {fileID: 2108198556}
   healPointText: {fileID: 2095412812}
@@ -1610,7 +1610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnTarget: {fileID: 0}
-  spawnTime: 2
+  spawnTime: 1
   playerPos: {fileID: 1778341267}
   spawnRadius: 15
 --- !u!4 &1261382303

@@ -28,17 +28,24 @@ public class EnemySpawn : SpawnPrefabs
     private void SpawnMethod()
     {
         Transform newEnemy = EnemyPool.Instance.GetPrefabFromPool();
-        newEnemy.position = SetTargetCyclePos(spawnRadius);
+        if(playerPos==null||!playerPos.gameObject.activeSelf){
+            Vector3 vector = new Vector3(0f,0f,0f);
+            newEnemy.position = SetTargetCyclePos(spawnRadius,vector);
+            newEnemy.rotation = Quaternion.identity;       
+            newEnemy.gameObject.SetActive(true);
+            return;
+        }
+        newEnemy.position = SetTargetCyclePos(spawnRadius,playerPos.transform.position);
         newEnemy.rotation = Quaternion.identity;       
         newEnemy.gameObject.SetActive(true);
     }
-    protected override Vector3 SetTargetCyclePos(float spawnRadius)
+    protected override Vector3 SetTargetCyclePos(float spawnRadius,Vector3 playerPos)
     {
         float randomAngle = Random.value;
         float angleInDegrees = randomAngle * 360;
         float angleInRadians = Mathf.Deg2Rad * angleInDegrees;
-        float spawnX = playerPos.transform.position.x + spawnRadius * Mathf.Cos(angleInRadians);
-        float spawnY = playerPos.transform.position.y + spawnRadius * Mathf.Sin(angleInRadians);
+        float spawnX = playerPos.x + spawnRadius * Mathf.Cos(angleInRadians);
+        float spawnY = playerPos.y + spawnRadius * Mathf.Sin(angleInRadians);
         spawnPos = new Vector3(spawnX, spawnY, 0);
         return spawnPos;
     }

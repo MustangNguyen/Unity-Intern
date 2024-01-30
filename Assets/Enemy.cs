@@ -20,7 +20,13 @@ public class Enemy : Character
         transform.Translate(LookAt()*movingSpeed*Time.deltaTime);
     }
     private Vector3 LookAt(){
-        Vector3 direction = playerPos.transform.position - transform.position;
+        Vector3 direction;
+        if(playerPos==null||!playerPos.gameObject.activeSelf){
+            direction = Vector3.zero - transform.position;
+            direction.Normalize();
+            return direction;
+        }
+        direction = playerPos.transform.position - transform.position;
         direction.Normalize();
         return direction;
     }
@@ -30,6 +36,7 @@ public class Enemy : Character
     protected override void BeKilled(){
         if(healthPoint<=0){
             ResetStat();
+            enemyMovementController.RemoveCharacter(this);
             enemyPool.ReturnPrefabBackToPool(this);
         }
     }

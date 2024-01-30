@@ -10,7 +10,7 @@ public class SpawnPrefabs : MonoBehaviour
     protected virtual void SpawnEnemy(){
         
     }
-    protected virtual Vector3 SetTargetCyclePos(float spawnRadius){
+    protected virtual Vector3 SetTargetCyclePos(float spawnRadius,Vector3 playerPos){
         return spawnPos;
     }
 }
