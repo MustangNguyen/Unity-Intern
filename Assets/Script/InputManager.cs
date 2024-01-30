@@ -23,6 +23,7 @@ public class InputManager : MonoBehaviour
         GetWorldPos();
         IsClick();
         GetNumberButton();
+        GetArrowButton();
     }
     public void GetWorldPos()
     {
@@ -41,7 +42,14 @@ public class InputManager : MonoBehaviour
         }
         catch (Exception ex)
         {
+            ex.ToString();
             return 0;
         }
+    }
+    public Vector3 GetArrowButton(){
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+        Vector3 arrowDirection = new Vector3(horizontal, vertical, 0f);
+        return arrowDirection;
     }
 }

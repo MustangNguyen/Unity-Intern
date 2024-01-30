@@ -52,7 +52,7 @@ public class BulletPool : MonoBehaviour
     }
     public void SetBulletBackToPool(Transform bullet)
     {
-        bulletPool.Add(bullet);
         bullet.gameObject.SetActive(false);
+        bulletPool.Add(bullet);
     }
 }

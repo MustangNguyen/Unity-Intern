@@ -7,6 +7,7 @@ public class BulletBehavior : MonoBehaviour
     private static BulletBehavior instance;
     public static BulletBehavior Instance { get => instance; }
     [SerializeField] public float bulletSpeed = 10f;
+    [SerializeField] public int bulletDamage = 1;
     [SerializeField] private Vector3 direction = Vector3.up;
     [SerializeField] private float timeToKill = 3f;
     public delegate void FireAction();
@@ -40,8 +41,12 @@ public class BulletBehavior : MonoBehaviour
         yield return new WaitForSeconds(timeToKill);
         KillTheBullet();
     }
-    public void SetType(float bulletSpeed)
+    public void SetType(BulletBehavior bulletType)
     {
-        this.bulletSpeed = bulletSpeed;
+        this.bulletSpeed = bulletType.bulletSpeed;
+        this.bulletDamage = bulletType.bulletDamage;
+    }
+    private void OnCollisionEnter2D(Collision2D col){
+        KillTheBullet();
     }
 }

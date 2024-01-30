@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Fire : MonoBehaviour
 {
-    [SerializeField] Transform bullet;
     [SerializeField] GunController gunController;
 
     void Update()
@@ -16,7 +15,7 @@ public class Fire : MonoBehaviour
         {
             Transform bulletPrefab = BulletPool.Instance.GetInstantiateObjects();
             Transform bulletType=gunController.ChangeBulletTypeByNumber();
-            bulletPrefab.GetComponent<BulletBehavior>().SetType(bulletType.GetComponent<BulletBehavior>().bulletSpeed);
+            bulletPrefab.GetComponent<BulletBehavior>().SetType(bulletType.GetComponent<BulletBehavior>());
             bulletPrefab.position=transform.position;
             bulletPrefab.rotation=transform.rotation;
             bulletPrefab.gameObject.SetActive(true);
