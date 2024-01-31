@@ -6,6 +6,8 @@ using UnityEngine.UIElements;
 public class GunController : MonoBehaviour
 {
     [SerializeField] private Transform bullets;
+    [SerializeField] public bool isManualAim = true;
+    [SerializeField]  public bool isAutoAimByDistance = false;
     [SerializeField] private List<Transform> bulletTypes = new List<Transform>();
     public Translate bulletTypeAfterChange;
     private void Start(){

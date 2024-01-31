@@ -167,7 +167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 147025089}
   m_Layer: 0
-  m_Name: Bullet Holding
+  m_Name: Bullet Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -384,7 +384,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 316107325}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10.974253}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -536,7 +536,7 @@ GameObject:
   - component: {fileID: 409966399}
   - component: {fileID: 409966398}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: === Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -730,7 +730,8 @@ GameObject:
   - component: {fileID: 568258865}
   - component: {fileID: 568258864}
   - component: {fileID: 568258863}
-  m_Layer: 0
+  - component: {fileID: 568258866}
+  m_Layer: 5
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -811,6 +812,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 144065542}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &568258866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568258862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fc863cf9d4617e4db1ba3c6ef7595d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPosition: {fileID: 1778341267}
+  isFollowing: 1
 --- !u!1 &624958884
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,6 +1403,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   root: {x: 0, y: 0, z: 0}
+  playerController: {fileID: 1778341268}
+  gunController: {fileID: 1219933681}
 --- !u!114 &1219933680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1414,6 +1431,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullets: {fileID: 1820533961}
+  isManualAim: 0
+  isAutoAimByDistance: 1
   bulletTypes: []
 --- !u!1 &1257485358
 GameObject:
@@ -1909,7 +1928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 848101075}
-  prefabsQuanlity: 10
+  prefabsQuanlity: 50
   prefabsList: []
   holder: {fileID: 1541086084}
 --- !u!1 &1541086083
@@ -2044,11 +2063,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af8b82d30f7a39d4b81707c18983b981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthPoint: 5
+  healthPoint: 999
   maxHealthPoint: 5
   movingSpeed: 10
   damage: 1
   healthPointText: {fileID: 1488796659}
+  enemiesList: {fileID: 2108198556}
+  nearestEnemy: {fileID: 0}
+  nearestEnemyDistance: 0
 --- !u!70 &1778341269
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

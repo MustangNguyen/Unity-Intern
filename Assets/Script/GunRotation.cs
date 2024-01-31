@@ -5,19 +5,23 @@ using UnityEngine;
 public class GunRotation : MonoBehaviour
 {
     [SerializeField] private Vector3 root;
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
+    [SerializeField] private PlayerController playerController;
+    [SerializeField] private GunController gunController;
     void Update()
     {
         GetPosition();
         GunRotating();
     }
-    private void GetPosition(){
-        root = InputManager.Instance.mouseWorldPos;
+    private void GetPosition()
+    {
+        if (gunController.isManualAim)
+        {
+            root = InputManager.Instance.mouseWorldPos;
+        }
+        else
+        {
+            root = playerController.nearestEnemy.position;
+        }
     }
     private void GunRotating()
     {
