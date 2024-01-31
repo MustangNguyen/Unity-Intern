@@ -46,6 +46,7 @@ public class PlayerController : Character
         healthPointText.text = "Player HP: " + healthPoint.ToString();
     }
     private Transform FindNearestEnemy(){     
+        if(enemiesList.characters.Count == 0) return nearestEnemy;
         foreach(Enemy enemy in enemiesList.characters){
             float distanceFromEnemyToPlayer = Vector3.Distance(enemy.transform.position,transform.position);
             if(nearestEnemyDistance > distanceFromEnemyToPlayer){
@@ -56,11 +57,12 @@ public class PlayerController : Character
         return nearestEnemy;
     }
     private void GetFisrtEnemyPosition(){
-        if (enemiesList.characters.Count!=1) return;
+        if (enemiesList.characters.Count == 0) return;
         nearestEnemyDistance = Vector3.Distance(enemiesList.characters[0].transform.position,transform.position);
         nearestEnemy = enemiesList.characters[0].transform;
     }
     private void TrackingEnemy(){
+        if(enemiesList.characters.Count == 0) return;
         nearestEnemyDistance = Vector3.Distance(nearestEnemy.position,transform.position);
     }
 }

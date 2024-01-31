@@ -7,7 +7,7 @@ public class GunRotation : MonoBehaviour
     [SerializeField] private Vector3 root;
     [SerializeField] private PlayerController playerController;
     [SerializeField] private GunController gunController;
-    void Update()
+    void FixedUpdate()
     {
         GetPosition();
         GunRotating();
@@ -20,6 +20,7 @@ public class GunRotation : MonoBehaviour
         }
         else
         {
+            if(playerController.nearestEnemy == null) return;
             root = playerController.nearestEnemy.position;
         }
     }

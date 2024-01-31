@@ -11,17 +11,22 @@ public class Enemy : Character
     [SerializeField] private EnemyMovementController enemyMovementController;
     [SerializeField] private TextMeshProUGUI healPointText;
     [SerializeField] private EnemyPool enemyPool;
-    private void OnEnable(){
+    [SerializeField] private UpdateScore updateScore;
+    private void OnEnable()
+    {
         enemyMovementController = FindObjectOfType<EnemyMovementController>();
         enemyMovementController.SetCharacter(this);
     }
-    public override void CharacterMovement(){
-        
-        transform.Translate(LookAt()*movingSpeed*Time.deltaTime);
+    public override void CharacterMovement()
+    {
+
+        transform.Translate(LookAt() * movingSpeed * Time.deltaTime);
     }
-    private Vector3 LookAt(){
+    private Vector3 LookAt()
+    {
         Vector3 direction;
-        if(playerPos==null||!playerPos.gameObject.activeSelf){
+        if (playerPos == null || !playerPos.gameObject.activeSelf)
+        {
             direction = Vector3.zero - transform.position;
             direction.Normalize();
             return direction;
@@ -30,26 +35,41 @@ public class Enemy : Character
         direction.Normalize();
         return direction;
     }
-    public void UpdateHealPointText(){
+    public void UpdateHealPointText()
+    {
         healPointText.text = "HP: " + healthPoint.ToString();
     }
-    protected override void BeKilled(){
-        if(healthPoint<=0){
+    protected override void BeKilled()
+    {
+        if (healthPoint <= 0)
+        {
             ResetStat();
             enemyMovementController.RemoveCharacter(this);
             enemyPool.ReturnPrefabBackToPool(this);
+            updateScore.score += maxHealthPoint;
         }
     }
-    private void ResetStat(){
+    private void ResetStat()
+    {
         healthPoint = maxHealthPoint;
     }
     protected override void TakeDamage(int damageTaking)
     {
         healthPoint -= damageTaking;
     }
-    private void OnCollisionEnter2D(Collision2D col){
-        if(col.gameObject.CompareTag("Bullet")){
-            TakeDamage(col.gameObject.GetComponent<BulletBehavior>().bulletDamage);       
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Bullet"))
+        {
+            TakeDamage(col.gameObject.GetComponent<BulletBehavior>().bulletDamage);
+            BeKilled();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Bullet"))
+        {
+            TakeDamage(col.gameObject.GetComponent<BulletBehavior>().bulletDamage);
             BeKilled();
         }
     }
