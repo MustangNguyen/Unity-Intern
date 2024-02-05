@@ -1326,7 +1326,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunController: {fileID: 1219933681}
-  isFire: 0
   attackInterval: 0.1
 --- !u!114 &1219933681
 MonoBehaviour:
@@ -2191,7 +2190,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 7
 --- !u!1 &1820533960
 GameObject:
   m_ObjectHideFlags: 0

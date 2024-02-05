@@ -7,7 +7,6 @@ using UnityEngine.AI;
 public class Fire : MonoBehaviour
 {
     [SerializeField] private GunController gunController;
-    [SerializeField] private bool isFire = false;
     [SerializeField] private float attackInterval = 0.5f;
 
     void Start(){
